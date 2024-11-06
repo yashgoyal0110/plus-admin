@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "^/[^.]*$",  // Only match routes without a file extension
+      "src": "^/[^.]*$",
       "dest": "/index.html"
     }
   ]
