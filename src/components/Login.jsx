@@ -23,7 +23,7 @@ const Login = () => {
     try {
       await axios
         .post(
-          "http://localhost:3000/api/v1/user/login",
+          "https://plus-backend.onrender.com/user/login",
           { email, password, role: "Admin" },
           {
             withCredentials: true,

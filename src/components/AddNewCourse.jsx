@@ -23,7 +23,7 @@ const AddNewCourse = () => {
     try {
       await axios
         .post(
-          "http://localhost:3000/api/v1/course/addnew",
+          "https://plus-backend.onrender.com/course/addnew",
           {
             title,
             code,

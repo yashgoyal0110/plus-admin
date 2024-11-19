@@ -24,7 +24,7 @@ const AddNewInstructor = () => {
     const fetchCourses = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3000/api/v1/course/allcourses",
+          "https://plus-backend.onrender.com/course/allcourses",
           { withCredentials: true }
         );
         setCourseArray(data.courses);
@@ -63,7 +63,7 @@ const AddNewInstructor = () => {
       formData.append("instAvatar", instAvatar);
 
       await axios
-        .post("http://localhost:3000/api/v1/user/instructor/addnew", formData, {
+        .post("https://plus-backend.onrender.com/user/instructor/addnew", formData, {
           withCredentials: true,
           headers: { "Content-Type": "multipart/form-data" }, // multipart/form-data
         })

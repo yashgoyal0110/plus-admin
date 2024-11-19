@@ -27,7 +27,7 @@ const Dashboard = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `http://localhost:3000/api/v1/slot/delete/${id}`,
+                `https://plus-backend.onrender.com/slot/delete/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -101,7 +101,7 @@ const Dashboard = () => {
     const fetchSlots = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3000/api/v1/slot/getall",
+          "https://plus-backend.onrender.com/slot/getall",
           { withCredentials: true }
         );
         setSlots(data.slots);
@@ -114,7 +114,7 @@ const Dashboard = () => {
     const fetchInstructors = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:3000/api/v1/user/instructors",
+          "https://plus-backend.onrender.com/user/instructors",
           { withCredentials: true }
         );
         setTotalInstructors(data.instructors.length);
@@ -134,7 +134,7 @@ const Dashboard = () => {
   const handleUpdateStatus = async (slotId, status) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/slot/update/${slotId}`,
+        `https://plus-backend.onrender.com/slot/update/${slotId}`,
         { status },
         { withCredentials: true }
       );
