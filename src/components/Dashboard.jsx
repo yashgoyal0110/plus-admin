@@ -8,13 +8,13 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { confirmAlert } from "react-confirm-alert"; // Import confirm alert
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { ClipLoader } from "react-spinners";
+import Loading from "./Loading";
 
 const Dashboard = () => {
   const [slots, setSlots] = useState([]);
   const [totalSlots, setTotalSlots] = useState();
   const [totalInstructors, setTotalInstructors] = useState();
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   // Delete Slot
   const deleteSlot = (id) => {
@@ -27,7 +27,7 @@ const Dashboard = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/api/v1/slot/delete/${id}`,
+                `http://localhost:3000/api/v1/slot/delete/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -43,12 +43,57 @@ const Dashboard = () => {
               );
             }
           },
+          style: {
+            backgroundColor: "#4caf50",
+            color: "white",
+            padding: "8px 16px",
+            fontSize: "14px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+            margin: "0 10px",
+          },
         },
         {
           label: "No",
           onClick: () => toast.info("Deletion canceled"),
+          style: {
+            backgroundColor: "#f44336",
+            color: "white",
+            padding: "8px 16px",
+            fontSize: "14px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            transition: "background-color 0.3s",
+            margin: "0 10px",
+          },
         },
       ],
+      overlayStyle: {
+        position: "fixed",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.5)", // Dimmed background
+        zIndex: 9998,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center", // Centering the modal vertically and horizontally
+      },
+      modalStyle: {
+        fontFamily: "Arial, Helvetica, sans-serif", // Font style
+        width: "400px", // Fixed width for the modal
+        padding: "30px", // Padding around the content
+        textAlign: "left", // Left align text
+        background: "#0b0a0a", // Dark background for modal
+        borderRadius: "10px", // Rounded corners
+        boxShadow: "0 20px 75px rgba(0, 0, 0, 0.13)", // Shadow for the modal
+        color: "#c4c4c4", // Light color for text
+        zIndex: 9999, // Modal is on top of the overlay
+      },
     });
   };
 
@@ -56,7 +101,7 @@ const Dashboard = () => {
     const fetchSlots = async () => {
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/api/v1/slot/getall",
+          "http://localhost:3000/api/v1/slot/getall",
           { withCredentials: true }
         );
         setSlots(data.slots);
@@ -69,7 +114,7 @@ const Dashboard = () => {
     const fetchInstructors = async () => {
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/api/v1/user/instructors",
+          "http://localhost:3000/api/v1/user/instructors",
           { withCredentials: true }
         );
         setTotalInstructors(data.instructors.length);
@@ -89,7 +134,7 @@ const Dashboard = () => {
   const handleUpdateStatus = async (slotId, status) => {
     try {
       const { data } = await axios.put(
-        `https://plus-backend.onrender.com/api/v1/slot/update/${slotId}`,
+        `http://localhost:3000/api/v1/slot/update/${slotId}`,
         { status },
         { withCredentials: true }
       );
@@ -114,24 +159,8 @@ const Dashboard = () => {
     <>
       <section className="dashboard page">
         {loading ? (
-          <div
-            className="loading-container"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "50px",
-            }}
-          >
-            <ClipLoader
-              size={100}
-              color={"#e35108f2"}
-              loading={loading}
-              cssOverride={{
-                display: "block",
-                marginTop: "200px",
-                borderWidth: "6px",
-              }}
-            />
+          <div className="loading-container">
+            <Loading loading={loading} />
           </div>
         ) : (
           <>

@@ -5,8 +5,8 @@ import { Context } from "../main";
 import { Navigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { confirmAlert } from "react-confirm-alert";
-import ClipLoader from "react-spinners/ClipLoader"; // Import ClipLoader
 import "react-confirm-alert/src/react-confirm-alert.css";
+import Loading from "./Loading";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
@@ -23,7 +23,7 @@ const Messages = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/api/v1/message/deletemessage/${id}`,
+                `http://localhost:3000/api/v1/message/deletemessage/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -53,7 +53,7 @@ const Messages = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/api/v1/message/getall",
+          "http://localhost:3000/api/v1/message/getall",
           { withCredentials: true }
         );
         setMessages(data.messages);
@@ -75,23 +75,8 @@ const Messages = () => {
       <h1>MESSAGES</h1>
       <div className="banner">
         {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "50px",
-            }}
-          >
-            <ClipLoader
-              size={100}
-              color={"#e35108f2"}
-              loading={loading}
-              cssOverride={{
-                display: "block",
-                marginTop: "200px",
-                borderWidth: "6px",
-              }}
-            />
+          <div className="loadingDiv">
+            <Loading loading={loading}/>
           </div>
         ) : messages && messages.length > 0 ? (
           messages.map((element) => {

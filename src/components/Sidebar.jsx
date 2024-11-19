@@ -22,7 +22,7 @@
 
 //   const handleLogout = async () => {
 //     await axios
-//       .get("https://plus-backend.onrender.com/api/v1/user/admin/logout", {
+//       .get("http://localhost:3000/api/v1/user/admin/logout", {
 //         withCredentials: true,
 //       })
 //       .then((res) => {
@@ -150,7 +150,7 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     await axios
-      .get("https://plus-backend.onrender.com/api/v1/user/admin/logout", {
+      .get("http://localhost:3000/api/v1/user/admin/logout", {
         withCredentials: true,
       })
       .then((res) => {

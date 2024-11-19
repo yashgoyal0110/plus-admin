@@ -1,4 +1,4 @@
-import  { useContext, useState } from "react";
+import  { useContext, useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Context } from "../main";
@@ -7,17 +7,23 @@ import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
   const navigateTo = useNavigate();
+  useEffect(() => {
+    setIsButtonDisabled(!email || !password);
+  }, [email, password]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoader(true);
     try {
       await axios
         .post(
-          "https://plus-backend.onrender.com/api/v1/user/login",
+          "http://localhost:3000/api/v1/user/login",
           { email, password, role: "Admin" },
           {
             withCredentials: true,
@@ -33,6 +39,9 @@ const Login = () => {
         });
     } catch (error) {
       toast.error(error.response.data.message);
+    }
+    finally {
+      setLoader(false);
     }
   };
 
@@ -60,7 +69,16 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div style={{ justifyContent: "center", alignItems: "center" }}>
-            <button type="submit">Login</button>
+          <button
+            type="submit"
+            disabled={loader || isButtonDisabled}
+            style={{
+              cursor: loader || isButtonDisabled ? "not-allowed" : "pointer",
+              opacity: loader || isButtonDisabled ? 0.6 : 1,
+            }}
+          >
+            {loader ? "Loading..." : "Login"}
+          </button>
           </div>
         </form>
       </section>

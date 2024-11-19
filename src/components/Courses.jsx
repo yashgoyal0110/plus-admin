@@ -5,8 +5,8 @@ import { Context } from "../main";
 import { Navigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { confirmAlert } from "react-confirm-alert";
-import ClipLoader from "react-spinners/ClipLoader"; // Import ClipLoader
 import "react-confirm-alert/src/react-confirm-alert.css";
+import Loading from "./Loading";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -23,7 +23,7 @@ const Courses = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/api/v1/course/deletecourse/${id}`,
+                `http://localhost:3000/api/v1/course/deletecourse/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -52,7 +52,7 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/api/v1/course/allcourses",
+          "http://localhost:3000/api/v1/course/allcourses",
           { withCredentials: true }
         );
         setCourses(data.courses);
@@ -65,6 +65,8 @@ const Courses = () => {
     fetchCourses();
   }, []);
 
+ 
+
   if (!isAuthenticated) {
     return <Navigate to={"/login"} />;
   }
@@ -73,19 +75,8 @@ const Courses = () => {
     <section className="page courses">
       <h1>Courses</h1>
       {loading ? (
-         <div
-         style={{
-           display: "flex",
-           justifyContent: "center",
-           marginTop: "50px",
-         }}
-       >
-         <ClipLoader size={100} color={"#e35108f2"} loading={loading} 
-           cssOverride={{
-             display: "block",
-             marginTop: "200px",
-             borderWidth: "6px"          
-           }}/>
+         <div className="Div loadingDiv">
+       <Loading loading={loading}/>
        </div>
       ) : (
         <div className="banner">

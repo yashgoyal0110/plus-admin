@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { ClipLoader } from "react-spinners";
+import Loading from "./Loading";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
@@ -24,7 +24,7 @@ const Instructors = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/api/v1/user/deleteinstructor/${id}`,
+                `http://localhost:3000/api/v1/user/deleteinstructor/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -56,7 +56,7 @@ const Instructors = () => {
     const fetchInstructors = async () => {
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/api/v1/user/instructors",
+          "http://localhost:3000/api/v1/user/instructors",
           { withCredentials: true }
         );
         setInstructors(data.instructors);
@@ -78,19 +78,8 @@ const Instructors = () => {
         <h1>INSTRUCTORS</h1>
         <div className="banner">
           {loading ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "50px",
-              }}
-            >
-              <ClipLoader size={100} color={"#e35108f2"} loading={loading} 
-                cssOverride={{
-                  display: "block",
-                  marginTop: "200px",
-                  borderWidth: "6px"            // Increase border width for bold effect
-                }}/>
+            <div className="loadingDiv">
+              <Loading loading = {loading} />
             </div>
           ) : instructors && instructors.length > 0 ? (
             instructors.map((element, idx) => {

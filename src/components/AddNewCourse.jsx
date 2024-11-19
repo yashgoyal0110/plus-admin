@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import { Context } from "../main";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -18,14 +18,12 @@ const AddNewCourse = () => {
   const [embedLink1, setEmbedLink1] = useState("");
   const [embedLink2, setEmbedLink2] = useState("");
 
-  const navigateTo = useNavigate();
-
   const handleAddNewCourse = async (e) => {
     e.preventDefault();
     try {
       await axios
         .post(
-          "https://plus-backend.onrender.com/api/v1/course/addnew",
+          "http://localhost:3000/api/v1/course/addnew",
           {
             title,
             code,
@@ -45,7 +43,7 @@ const AddNewCourse = () => {
         )
         .then((res) => {
           toast.success(res.data.message);
-          navigateTo("/");
+          // navigateTo("/");
           setTitle("");
           setValidity("");
           setDuration("");
