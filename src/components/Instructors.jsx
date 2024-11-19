@@ -24,7 +24,7 @@ const Instructors = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/user/deleteinstructor/${id}`,
+                `https://plus-backend.onrender.com/api/v1/user/deleteinstructor/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -56,7 +56,7 @@ const Instructors = () => {
     const fetchInstructors = async () => {
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/user/instructors",
+          "https://plus-backend.onrender.com/api/v1/user/instructors",
           { withCredentials: true }
         );
         setInstructors(data.instructors);

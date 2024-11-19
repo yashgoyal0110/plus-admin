@@ -21,7 +21,7 @@
 //     const fetchUser = async () => {
 //       try {
 //         const response = await axios.get(
-//           "https://plus-backend.onrender.com/user/admin/me",
+//           "https://plus-backend.onrender.com/api/v1/user/admin/me",
 //           { withCredentials: true }
 //         );
 //         setIsAuthenticated(true);
@@ -81,7 +81,7 @@ function App() {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          "https://plus-backend.onrender.com/user/admin/me",
+          "https://plus-backend.onrender.com/api/v1/user/admin/me",
           { withCredentials: true }
         );
         setIsAuthenticated(true);

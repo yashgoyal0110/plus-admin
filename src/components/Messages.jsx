@@ -23,7 +23,7 @@ const Messages = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/message/deletemessage/${id}`,
+                `https://plus-backend.onrender.com/api/v1/message/deletemessage/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -53,7 +53,7 @@ const Messages = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/message/getall",
+          "https://plus-backend.onrender.com/api/v1/message/getall",
           { withCredentials: true }
         );
         setMessages(data.messages);
