@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { GoCheckCircleFill } from "react-icons/go";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import { confirmAlert } from "react-confirm-alert"; // Import confirm alert
+import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Loading from "./Loading";
 
@@ -77,22 +77,22 @@ const Dashboard = () => {
         left: "0",
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Dimmed background
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
         zIndex: 9998,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center", // Centering the modal vertically and horizontally
+        alignItems: "center",
       },
       modalStyle: {
-        fontFamily: "Arial, Helvetica, sans-serif", // Font style
-        width: "400px", // Fixed width for the modal
-        padding: "30px", // Padding around the content
-        textAlign: "left", // Left align text
-        background: "#0b0a0a", // Dark background for modal
-        borderRadius: "10px", // Rounded corners
-        boxShadow: "0 20px 75px rgba(0, 0, 0, 0.13)", // Shadow for the modal
-        color: "#c4c4c4", // Light color for text
-        zIndex: 9999, // Modal is on top of the overlay
+        fontFamily: "Arial, Helvetica, sans-serif",
+        width: "400px",
+        padding: "30px",
+        textAlign: "left",
+        background: "#0b0a0a",
+        borderRadius: "10px",
+        boxShadow: "0 20px 75px rgba(0, 0, 0, 0.13)",
+        color: "#c4c4c4",
+        zIndex: 9999,
       },
     });
   };
