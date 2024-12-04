@@ -36,7 +36,6 @@ const Instructors = () => {
                 response.data.message || "Instructor deleted successfully!"
               );
             } catch (error) {
-              console.log(error);
               toast.error(
                 error.response?.data?.message || "Failed to delete Instructor"
               );

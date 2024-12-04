@@ -29,7 +29,7 @@ const AddNewInstructor = () => {
         );
         setCourseArray(data.courses);
       } catch (error) {
-        console.log(error.response.data.message);
+        return error.message;
       }
     };
     fetchCourses();

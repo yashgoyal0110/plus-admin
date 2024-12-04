@@ -37,7 +37,6 @@ const Dashboard = () => {
                 response.data.message || "Slot deleted successfully!"
               );
             } catch (error) {
-              console.log(error);
               toast.error(
                 error.response?.data?.message || "Failed to delete slot"
               );
@@ -106,9 +105,9 @@ const Dashboard = () => {
         );
         setSlots(data.slots);
         setTotalSlots(data.slots.length);
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
         setSlots([]);
+        return err.message;
       }
     };
     const fetchInstructors = async () => {
@@ -119,7 +118,7 @@ const Dashboard = () => {
         );
         setTotalInstructors(data.instructors.length);
       } catch (error) {
-        console.log(error);
+        return (error.message);
       }
     };
 
@@ -145,7 +144,6 @@ const Dashboard = () => {
       );
       toast.success(data.message);
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };

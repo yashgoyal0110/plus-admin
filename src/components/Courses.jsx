@@ -33,7 +33,6 @@ const Courses = () => {
                 response.data.message || "Course deleted successfully!"
               );
             } catch (error) {
-              console.log(error);
               toast.error(
                 error.response?.data?.message || "Failed to delete Course"
               );

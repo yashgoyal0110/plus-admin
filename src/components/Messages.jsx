@@ -33,7 +33,6 @@ const Messages = () => {
                 response.data.message || "Message deleted successfully!"
               );
             } catch (error) {
-              console.log(error);
               toast.error(
                 error.response?.data?.message || "Failed to delete Message"
               );
@@ -58,7 +57,7 @@ const Messages = () => {
         );
         setMessages(data.messages);
       } catch (error) {
-        console.log(error.response.data.message);
+        return (error.message);
       } finally {
         setLoading(false);
       }
