@@ -23,7 +23,7 @@ const AddNewAdmin = () => {
     try {
       await axios
         .post(
-          "https://plus-backend.onrender.com/api/v1/user/admin/addnew",
+          "https://plus-backendd.onrender.com/api/v1/user/admin/addnew",
           { firstName, lastName, email, phone, referalCode, dob, gender, password },
           {
             withCredentials: true,

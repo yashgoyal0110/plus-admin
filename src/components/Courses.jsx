@@ -23,7 +23,7 @@ const Courses = () => {
           onClick: async () => {
             try {
               const response = await axios.delete(
-                `https://plus-backend.onrender.com/api/v1/course/deletecourse/${id}`,
+                `https://plus-backendd.onrender.com/api/v1/course/deletecourse/${id}`,
                 {
                   withCredentials: true,
                 }
@@ -51,7 +51,7 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const { data } = await axios.get(
-          "https://plus-backend.onrender.com/api/v1/course/allcourses",
+          "https://plus-backendd.onrender.com/api/v1/course/allcourses",
           { withCredentials: true }
         );
         setCourses(data.courses);

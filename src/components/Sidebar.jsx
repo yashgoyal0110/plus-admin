@@ -51,7 +51,7 @@ const Sidebar = () => {
 
   // const handleLogout = async () => {
   //   await axios
-  //     .get("https://plus-backend.onrender.com/api/v1/user/admin/logout", {
+  //     .get("https://plus-backendd.onrender.com/api/v1/user/admin/logout", {
   //       withCredentials: true,
   //     })
   //     .then((res) => {
@@ -74,7 +74,7 @@ const Sidebar = () => {
           onClick: async () => {
             try {
               const response = await axios.get(
-                "https://plus-backend.onrender.com/api/v1/user/admin/logout",
+                "https://plus-backendd.onrender.com/api/v1/user/admin/logout",
                 {
                   withCredentials: true,
                 }
